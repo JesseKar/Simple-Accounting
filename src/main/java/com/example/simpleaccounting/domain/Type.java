@@ -16,8 +16,6 @@ public class Type {
 
 	private @Id @GeneratedValue(strategy=GenerationType.AUTO) Long typeId;
 	private String name;
-	private double sumIncome;
-	private double sumExpense;
 	
 	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "type")
@@ -55,30 +53,6 @@ public class Type {
 		this.transactions = transactions;
 	}
 
-	public double getSumIncome() {
-		return sumIncome;
-	}
-
-	public void setSumIncome() {
-		double sum = 0;
-		if(this.name == "income") {
-		for(int i = 0; i < transactions.size(); i++) {
-			sum += transactions.get(i).getAmount();
-		}
-		}
-		sumIncome = sum;
-	}
-
-	public double getSumExpense() {
-		return sumExpense;
-	}
-
-	public void setSumExpense() {
 		
-	}
-
-	
-	
-	
 	
 }
