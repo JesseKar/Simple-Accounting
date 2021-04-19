@@ -45,15 +45,15 @@ public class MainController {
 	// show all transaction, both expenses and incomes
 	@RequestMapping(value = {"/", "/transactions"})
 	public String listAllTransactions(Model model) {
-		// fetch one user and transactions for that user
 		
+		// fetch one user and transactions for that user
 		UserDetails user = (UserDetails) SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 		String username = user.getUsername();
 		User currentUser = userRepo.findByUsername(username);
 		model.addAttribute("transactions", traRepo.findByUser(currentUser));
 		
-		List<Transaction> traList = traRepo.findByUser(currentUser);
+		List<Transaction> traList = traRepo.findAll();
 		double sum = 0;
 		for(int i = 0; i < traList.size(); i++) {
 			if(traList.get(i).getType().getName() == "income") {
@@ -131,7 +131,7 @@ public class MainController {
 			return "expenses";
 		}
 	
-	// add transaction SAAKO TÄHÄN JOTENKIN ET VALMIINA INCOME TAI EXPENSE SIVULTA TULLESSA??!??
+	// add transaction 
 		@RequestMapping(value = "/add")
 		public String addTransaction(Model model) {
 			model.addAttribute("transaction", new Transaction());
@@ -178,12 +178,12 @@ public class MainController {
 			return "redirect:../transactions";
 		}
 		
-		//RESTful show all transactions
+		//RESTful show all transactions FIX THIS
 		@GetMapping("/rest")
 		public @ResponseBody List<Transaction> transactionsListRest() {
 			return (List<Transaction>) traRepo.findAll();
 		}
-		//RESTful to get a transaction by id
+		//RESTful to get a transaction by id FIX THIS
 		@GetMapping("/rest/{id}")
 		public @ResponseBody Optional<Transaction> findTranscationRest(@PathVariable("id") Long transactionId) {
 			return traRepo.findById(transactionId);
