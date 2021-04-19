@@ -61,6 +61,8 @@ public class SimpleAccountingApplication {
 				log.info(transaction.toString());
 			}
 			
+			userRepo.deleteAll();
+			
 		};
 	}
 
