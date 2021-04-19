@@ -135,8 +135,11 @@ public class MainController {
 		@RequestMapping(value = "/add")
 		public String addTransaction(Model model) {
 			model.addAttribute("transaction", new Transaction());
-			model.addAttribute("types", typeRepo.findAll());
 			
+			typeRepo.save(new Type("income"));
+			typeRepo.save(new Type("expense"));
+			
+			model.addAttribute("types", typeRepo.findAll());
 			return "addtransaction";
 		}
 		
@@ -151,13 +154,14 @@ public class MainController {
 	// save transaction
 		@PostMapping("/save")
 		public String save(Transaction transaction) {
-			
+			// fetch user
 			UserDetails user = (UserDetails) SecurityContextHolder.getContext()
 					.getAuthentication().getPrincipal();
 			String username = user.getUsername();
 			User currentUser = userRepo.findByUsername(username);
+			// set user for transaction
 			transaction.setUser(currentUser);
-			// ohjaus tyypin mukaan income tai expenses sivulle???
+			
 			traRepo.save(transaction);
 			if(transaction.getType().getName() == "income") {
 				return "redirect:incomes";

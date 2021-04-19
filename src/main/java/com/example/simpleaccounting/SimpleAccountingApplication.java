@@ -30,9 +30,6 @@ public class SimpleAccountingApplication {
 			UserRepository userRepo) {
 		return (args) -> {
 			
-			userRepo.deleteAll();
-			traRepo.deleteAll();
-			
 			//for testing
 			log.info("adding few transaction examples");
 			//Creating users admin/admin & user/user with roles
@@ -66,6 +63,10 @@ public class SimpleAccountingApplication {
 				log.info(transaction.toString());
 			}
 			
+			//empty repositories
+			userRepo.deleteAll();
+			traRepo.deleteAll();
+			typeRepo.deleteAll();
 					
 		};
 	}
