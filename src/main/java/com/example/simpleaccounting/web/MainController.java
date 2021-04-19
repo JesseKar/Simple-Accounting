@@ -162,10 +162,12 @@ public class MainController {
 			if(transaction.getType().getName() == "income") {
 				return "redirect:incomes";
 			} 
-			if(transaction.getType().getName() == "expense") {
+			else if (transaction.getType().getName() == "expense") {
 				return "redirect:expenses";
 			}
-			return "";
+			else {
+				return "redirect:transactions";
+			}
 		}
 		
 	//delete transaction
