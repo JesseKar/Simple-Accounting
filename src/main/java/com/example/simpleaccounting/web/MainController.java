@@ -135,10 +135,7 @@ public class MainController {
 		@RequestMapping(value = "/add")
 		public String addTransaction(Model model) {
 			model.addAttribute("transaction", new Transaction());
-			
-			typeRepo.save(new Type("income"));
-			typeRepo.save(new Type("expense"));
-			
+									
 			model.addAttribute("types", typeRepo.findAll());
 			return "addtransaction";
 		}
@@ -161,8 +158,8 @@ public class MainController {
 			User currentUser = userRepo.findByUsername(username);
 			// set user for transaction
 			transaction.setUser(currentUser);
-			
 			traRepo.save(transaction);
+			
 			if(transaction.getType().getName() == "income") {
 				return "redirect:incomes";
 			} 
