@@ -18,7 +18,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userid", nullable = false, updatable = false)
-	private Long id;
+	private Long userid;
 	
 	// Username with unique constraint
 	@Column(name = "username", nullable = false, unique = true)
@@ -44,11 +44,11 @@ public class User {
 	}
 
 	public Long getId() {
-		return id;
+		return userid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long userid) {
+		this.userid = userid;
 	}
 
 	public String getUsername() {

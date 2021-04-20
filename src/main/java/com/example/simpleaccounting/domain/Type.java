@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name = "type")
 public class Type {
 
 	private @Id @GeneratedValue(strategy=GenerationType.AUTO) Long typeId;
