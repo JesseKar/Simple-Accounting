@@ -65,7 +65,6 @@ public class SimpleAccountingApplication {
 			
 			//empty repositories
 			userRepo.deleteAll();
-			traRepo.deleteAll();
 			
 					
 		};
