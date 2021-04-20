@@ -53,7 +53,7 @@ public class MainController {
 		User currentUser = userRepo.findByUsername(username);
 		model.addAttribute("transactions", traRepo.findByUser(currentUser));
 		
-		List<Transaction> traList = traRepo.findByUser(currentUser);
+		List<Transaction> traList = (List<Transaction>) traRepo.findByUser(currentUser);
 		double sum = 0;
 		for(int i = 0; i < traList.size(); i++) {
 			if(traList.get(i).getType().getName() == "income") {
