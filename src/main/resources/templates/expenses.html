@@ -24,6 +24,7 @@
 		    <th>Title</th>
 		    <th>Amount</th>
 		    <th>Date</th>
+		    <th>Info</th>
 		    <th>Type</th>		    
 		</tr>  
 		
@@ -31,6 +32,7 @@
     		<td th:text="${expense.title}"></td>
     		<td th:text="${expense.amount}"></td>
     		<td th:text="${expense.date}"></td>
+    		<td th:text="${expense.info}"></td>
     		<td th:text="${expense.type.name}"></td>
  			<td ><a th:href="@{/delete/{id}(id=${expense.id})}" class="btn btn-danger">Delete</a></td>
  			<td ><a th:href="@{/edit/{id}(id=${expense.id})}" class="btn btn-edit">Edit</a></td>    		

@@ -13,6 +13,7 @@ public interface TransactionRepository extends CrudRepository<Transaction, Long>
 	//Find all transactions to list
 	List<Transaction> findAll();
 	
+	//find transaction by title
 	List<Transaction> findByTitle(@Param("title") String title);
 	
 	//find transactions by user for user unique lists

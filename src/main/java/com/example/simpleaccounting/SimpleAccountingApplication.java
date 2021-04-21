@@ -42,19 +42,19 @@ public class SimpleAccountingApplication {
 			typeRepo.save(new Type("expense"));
 			// Attributes: String title, double amount, String date, String info, Type type
 			traRepo.save(new Transaction("Puhelin", 9.90, "5.4.2021",
-					"uusi puhelin", typeRepo.findByName("expense").get(0), user1));
+					"uusi puhelin", typeRepo.findByName("expense").get(0)));
 			traRepo.save(new Transaction("Puhelin", 9.90, "5.4.2021",
-					"uusi puhelin", typeRepo.findByName("expense").get(0), user2));
+					"uusi puhelin", typeRepo.findByName("expense").get(0)));
 			traRepo.save(new Transaction("YEL", 250, "1.4.2021",
-					"YEL-maksu", typeRepo.findByName("expense").get(0), user1));
+					"YEL-maksu", typeRepo.findByName("expense").get(0)));
 			traRepo.save(new Transaction("YEL", 250, "1.4.2021",
-					"YEL-maksu", typeRepo.findByName("expense").get(0), user2));
+					"YEL-maksu", typeRepo.findByName("expense").get(0)));
 			traRepo.save(new Transaction("lasku", 2500, "29.3.2021",
-					"Firma keikka", typeRepo.findByName("income").get(0), user2));
+					"Firma keikka", typeRepo.findByName("income").get(0)));
 			traRepo.save(new Transaction("lasku", 3500, "2.4.2021",
-					"Kuukausittainen laskutus", typeRepo.findByName("income").get(0), user2));
+					"Kuukausittainen laskutus", typeRepo.findByName("income").get(0)));
 			traRepo.save(new Transaction("Puhelin", 9.90, "5.4.2021",
-					"uusi puhelin", typeRepo.findByName("income").get(0), user1));
+					"uusi puhelin", typeRepo.findByName("income").get(0)));
 			
 			
 			// list all transactions to log
@@ -63,7 +63,7 @@ public class SimpleAccountingApplication {
 				log.info(transaction.toString());
 			}
 			
-			//empty repositories
+			//empty user repository
 			userRepo.deleteAll();
 			
 					

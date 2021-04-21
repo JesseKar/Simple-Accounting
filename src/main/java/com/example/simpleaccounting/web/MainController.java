@@ -179,15 +179,31 @@ public class MainController {
 			return "redirect:../transactions";
 		}
 		
-		//RESTful show all transactions FIX THIS
+		//RESTful show all transactions
 		@GetMapping("/rest")
 		public @ResponseBody List<Transaction> transactionsListRest() {
-			return (List<Transaction>) traRepo.findAll();
+			UserDetails user = (UserDetails) SecurityContextHolder.getContext()
+					.getAuthentication().getPrincipal();
+			String username = user.getUsername();
+			User currentUser = userRepo.findByUsername(username);
+			return (List<Transaction>) traRepo.findByUser(currentUser);
 		}
-		//RESTful to get a transaction by id FIX THIS
+		//RESTful to get a transaction by id
 		@GetMapping("/rest/{id}")
 		public @ResponseBody Optional<Transaction> findTranscationRest(@PathVariable("id") Long transactionId) {
-			return traRepo.findById(transactionId);
+			UserDetails user = (UserDetails) SecurityContextHolder.getContext()
+					.getAuthentication().getPrincipal();
+			String username = user.getUsername();
+			User currentUser = userRepo.findByUsername(username);
+			List<Transaction> transactions = traRepo.findByUser(currentUser);
+			for(int i = 0; i < transactions.size(); i++) {
+				if(transactions.get(i).getId() == transactionId) {
+					transactionId = transactions.get(i).getId();
+					return traRepo.findById(transactionId);
+					
+				} 
+			}
+			return Optional.empty();
 		}
 		
 		

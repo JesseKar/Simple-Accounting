@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -16,10 +18,11 @@ public class Transaction {
 	private @Id @GeneratedValue(strategy=GenerationType.AUTO) Long id;
 	private String title;
 	private double amount;
-	private String date; // muuta date muotoon ??
+	private String date; // Change to date type later
 	private String info;
 	
 	@ManyToOne
+	@JsonIgnore
     @JoinColumn(name = "userid")
 	private User user;
 	
